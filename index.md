@@ -1,6 +1,6 @@
-## Welcome to csicks's Home Pages
+# Welcome to csicks's Home Pages
 
-# Home Page for test
+## Home Page for test
 
 ## TODO:
 - one
