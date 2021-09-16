@@ -1,3 +1,8 @@
-theme: jekyll-theme-midnight
-title: Welcome to csicks's home page!
-description: Test
+# theme: jekyll-theme-midnight
+title: csicks homepage!
+SEOTitle: csicks homepage
+header-img: img/bg.jpg
+email: yxchen11@outlook.com
+description: "Feel free to explore everything!"
+url: "http://csicks.github.io"
+github_repo: "https://github.com/csicks/csicks.github.io.git"
