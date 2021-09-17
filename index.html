@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>EMAF: Fast Cryo-EM Image Alignment Algorithm using Power Spectrum Features</title>
+    <meta charset="utf-8" />
+    <!-- SEO Entries -->
+    <meta content="EMAF, powered by pattern recognition and bioinformatics group" name="description" />
+    <!-- Favicon -->
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/mystyle.css" rel="stylesheet" type="text/css" />
+    <link href="css/mystyle-new.css" rel="stylesheet" type="text/css" />
+    <!-- Javascripts -->
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container flex">
+            <div class="logo flex">
+                CSBIO
+            </div>
+            <div class="title flex">
+                EMAF
+            </div>
+            <div class="nav">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://www.csbio.sjtu.edu.cn/">Home</a></li>
+                    <li><a href="mailto:hbshen@sjtu.edu.cn">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section class="promo">
+        <div class="wrap">
+            <div class="promo-text">
+                <div class="promo-title">EMAF</div>
+                <p> EMAF is an alignment algorithm program which aims at cryo-EM two-dimensional particle images. The
+                    program is implemented in C++ under C++11 standard. Some other alignment methods like Fourier-Mellin
+                    transform and XMIPP alignment are also re-implemented and included in this program. Both source code
+                    and complied program are available. This program has been tested on Ubuntu 14.04, Ubuntu 16.04 and
+                    Ubuntu 18.04. Other Linux system should also be able to run this program. For Windows, you may be
+                    able to use this program after installation of FFTW.</p>
+                <p><a class="promo-button" href="#download">Download</a> &nbsp;
+                    <a class="promo-link" href="#intro">Learn more</a>
+                </p>
+            </div><!-- promo-text -->
+            <img src="img/1.png">
+        </div><!-- wrap -->
+    </section><!-- promo -->
+    <h1>Steps of algorithm</h1>
+    <section class="features-desc" id="intro">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">1.Fourier Tansform</h3>
+                <p class="intro">Apply Fourier tansform to two input images to convert them to frequency domain.</p>
+            </div>
+        </div>
+    </section>
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">2.Power Spectrum</h3>
+                <p class="intro"> Computing power spectrum of two input images, then apply corresponding filter and
+                    threshold cutting to suppress background information and noise.</p>
+            </div>
+        </div>
+    </section>
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">3.Feature Computation</h3>
+                <p class="intro"> Option1: Compute local maximum of power spectrum which can be further refined by
+                    computing their gravity centers in neighborhood. Option2: Compute main direction of power spectrum
+                    after applying filtering and threshold cutting.</p>
+            </div>
+        </div>
+    </section>
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">4.Rotation Estimation</h3>
+                <p class="intro"> Regard one image as reference image. Compute the rotation angle according to
+                    coordinates of two gravity centers or differences between two main directions and generate another
+                    possible solution according to the periodicity.</p>
+            </div>
+        </div>
+    </section>
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">5.Shiftment Estimation</h3>
+                <p class="intro"> Use the estimated rotation angles to genenate rotation corrected image and estimated
+                    shiftment using phase-only method.</p>
+            </div>
+        </div>
+    </section>
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">6.Final Results</h3>
+                <p class="intro"> Compare two output parameters through calculating the correntropy between corrected
+                    image and reference image. Output parameters with higher correntropy.</p>
+            </div>
+        </div>
+    </section>
+
+    <h1>Installation and Instructions</h1>
+
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">1.Dependencies</h3>
+                <p class="intro"> Since most utilities are implemented in our own source code, the only dependent
+                    package is FFTW. You may simply install FFTW3 using "sudo apt-get install libfftw3-dev" in ubuntu
+                    command line or compiling from source code following instructions on the official website
+                    http://fftw.org/.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">2.Binary File Usage</h3>
+                <p class="intro"> You may directly use the complied program "EMAF" in format "./EMAF -h" in Linux
+                    commandline to see commandline intructions. If some error occurs like GLIBC error, you may install
+                    the required libraries or consider compile from source code following the below instructions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">3.Compile from Source Code</h3>
+                <p class="intro"> You may compile from source code using the following command in Linux system. CMake
+                    version 3.5.1 and above have been tested. You may change the CMakeLists.txt if other CMake version
+                    are used.
+                <pre>
+						cd /path/to/this README.md
+						mkdir build
+						cd build
+						cmake ..
+						make
+					</pre>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-desc">
+        <div class="container">
+            <div class="row">
+                <h3 class="bottom-line">4.Support</h3>
+                <p class="intro"> This program temporally uses an INT variable to store the whole size of data
+                    (number_of_images * width * height). Then it might crash if the data size is too big. Consider using
+                    the BIGDATA version if data size is very large. By now, only MRC format and certain XMD format are
+                    supported as input file. XMD format is used for XMIPP relied programs and only tested under certain
+                    cases. Therefore, data is strongly recommended to be converted to MRC format when it is feed into
+                    this program.</p>
+            </div>
+        </div>
+    </section>
+
+    <h1>Citation</h1>
+    <section class="features-desc" id="intro">
+        <div class="container">
+            <div class="row">
+                <p class="intro">Fast cryo-EM image alignment algorithm using power spectrum features, Yuxuan Chen, Rui
+                    Xie, Yang Yang, Lin He, Dagan Feng, and Hong-Bin Shen, Journal of Chemical Information and Modeling,
+                    2021</p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
